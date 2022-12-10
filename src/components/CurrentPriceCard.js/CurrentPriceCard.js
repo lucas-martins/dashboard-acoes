@@ -1,15 +1,35 @@
 import React from 'react'
+import moment from 'moment'
 import { Card } from 'primereact/card';
 
+import { StockContext } from '../../StockContext';
+
+import styles from './CurrentPriceCard.module.css'
+
 export const CurrentPriceCard = () => {
+	const {currentPrice} = React.useContext(StockContext)
+	const [transformedData, setTransformedDate] = React.useState('')
+
+	React.useEffect(() => {
+		if(currentPrice?.pricedAt) 
+			setTransformedDate(moment(currentPrice.pricedAt).format('DD/MM/YYYY'))
+	}, [currentPrice])
+
   return (
-    <Card title="Simple Card" style={{ width: '25rem', marginBottom: '2em' }}>
-			<p className="m-0" style={{lineHeight: '1.5'}}>
-					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed
-						consequuntur error repudiandae numquam deserunt
-						quisquam repellat libero asperiores earum nam nobis,
-						culpa ratione quam perferendis esse, cupiditate neque quas!
-			</p>
+    <Card title="Último Preço" className={styles.card}>
+			{
+				!Object.keys(currentPrice).length ? 
+					<p className="m-0">
+						Informe o nome da ação que deseja verificar o último preço
+					</p>
+				:
+				<div>
+					<p>Nome: {currentPrice.name}</p>
+					<p>Último Preço: R${currentPrice.lastPrice}</p>
+					<p>Data: {transformedData}</p>
+				</div>
+			}
+
     </Card>
   )
 }

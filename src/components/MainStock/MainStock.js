@@ -1,16 +1,30 @@
 import React from 'react'
+import { toast } from 'react-toastify';
+
 import { Input } from '../Input/Input'
-import useForm from '../../hooks/useForm'
 import { ButtonApp } from '../ButtonApp/ButtonApp'
+
+import useForm from '../../hooks/useForm'
+import { StockContext } from '../../StockContext'
+import { getCurrentPrice } from '../../Api'
+
 import styles from './MainStock.module.css'
 
 export const MainStock = () => {
 
   const stock = useForm()
+  const {setCurrentPrice, setCurrentStock} = React.useContext(StockContext)
+
+  React.useEffect(() => setCurrentStock(stock.value), [stock.value, setCurrentStock])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(stock.value)
+    const response = await getCurrentPrice(stock.value)
+    if(response.status === 200) {
+      setCurrentPrice(response.data)
+    } else {
+      toast.error('Ação não encontrada!');
+    }
   }
 
   return (
@@ -23,7 +37,7 @@ export const MainStock = () => {
           errorMessage={'Esta ação não foi encontrada.'}
           {...stock}
         />
-        <ButtonApp label={'Pesquisar'} />
+        <ButtonApp label={'Pesquisar'} tooltip={'Informe uma ação para pesquisar'} />
       </form>
     </div>
   )
