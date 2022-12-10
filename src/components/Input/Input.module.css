@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: .5rem;
+}
+
+.error {
+    color: #f31;
+    font-size: .875rem;
+    margin-top: .25rem;
+}
