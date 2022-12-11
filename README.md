@@ -23,13 +23,13 @@ Para execução da aplicação é necessário que todos os pacotes necessários 
 
 ## 4. Preencher a variável de ambiente **BASE_URL**:
 
-Este passo é bem importante para que a aplicação consiga fazer as requisições ao back-end. Existe um arquivo ".env.example" na raiz do projeto. Este arquivo deve ser renomeado para ".env". Ele possui a variável de ambiente **REACT_APP_BASE_URL** que irá receber como valor a URL do back-end que será acessada durante as requisições para obtenção dos dados. Você deve substituir "<YOUR_BASE_URL_HERE>" pela URL do back-end que está utilizando.
-Por exemplo caso esteja rodando o back-end localmente em sua máquina e o mesmo esteja rodando na porta 3001 seu valor será "http://localhost:3001".
+Este passo é bem importante para que a aplicação consiga fazer as requisições ao Back-end. Existe um arquivo ".env.example" na raiz do projeto. Este arquivo deve ser renomeado para ".env". Ele possui a variável de ambiente **REACT_APP_BASE_URL** que irá receber como valor a URL do Back-end que será acessada durante as requisições para obtenção dos dados. Você deve substituir "<YOUR_BASE_URL_HERE>" pela URL do back-end que está utilizando.
+Por exemplo caso esteja rodando o Back-end localmente em sua máquina e o mesmo esteja rodando na porta 3001 seu valor será "http://localhost:3001".
 **Ex:** REACT_APP_BASE_URL=http://localhost:3001
 
 ## 5. Executando o servidor local
 
-Após instalar as dependências do projeto com sucesso e configurar a variável de ambiente **BASE_URL**, execute o comando abaixo na raiz do projeto Frontend:
+Após instalar as dependências do projeto com sucesso e configurar a variável de ambiente **BASE_URL**, execute o comando abaixo na raiz do projeto Front-end:
 
 >npm start
 
@@ -39,7 +39,7 @@ Visite o endereço abaixo em um navegador para verificar que o servidor está se
 
 ## 6. Executando os testes
 
-Execute o comando abaixo na raiz do projeto Frontend para rodar os testes unitários:
+Execute o comando abaixo na raiz do projeto Front-end para rodar os testes unitários:
 
 >npm test
 
