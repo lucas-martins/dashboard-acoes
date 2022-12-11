@@ -1,10 +1,9 @@
 import React from 'react'
-import { toast } from 'react-toastify';
 import { Card } from 'primereact/card';
 
 import { StockContext } from '../../StockContext';
 import useForm from '../../hooks/useForm';
-import { getComparation } from '../../Api';
+import { handleSubmit } from '../../helpers/HandleSubmit';
 
 import { Input } from '../Input/Input';
 import { ButtonApp } from '../ButtonApp/ButtonApp';
@@ -21,30 +20,15 @@ export const ComparationCard = () => {
 		else setButtonDisabled(false)
 	}, [stocksToCompare, currentStock])
 
-	const handleSubmit = async (event) => {
-    event.preventDefault();
-    let params = ''
-    stocksToCompare.value.forEach(param => params += `stocksToCompare[]=${param}&`)
-    params = params.slice(0, -1)
-
-    const response = await getComparation(currentStock, params)
-		if(response.status === 200) {
-			const comparation = response.data.lastPrices
-
-			const names = comparation.map(price => price.name).reverse()
-			const lastPrices = comparation.map(price => price.lastPrice).reverse()
-      const lastDate = comparation[0].pricedAt
-
-			setComparation({names, lastPrices, lastDate})
-		} else {
-		  toast.error('Não foi possível realizar a comparação. Cheque as informações e tente novamente!');
-		}
+  const onSubmit = async (e) => {
+    const response = await handleSubmit(e, {stocksToCompare, currentStock}, 'comparation')
+    if(response && Object?.keys(response)?.length > 0) setComparation(response)
   }
 
   return (
-		<Card title="Comparação">
+		<Card data-testid="comparation" title="Comparação">
       <p>Para selecionar as ações que deseja comparar digite o nome da ação e clique "Enter"</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={(e) => onSubmit(e)}>
         <Input
           type={'chips'}
           {...stocksToCompare}

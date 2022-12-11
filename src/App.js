@@ -23,7 +23,7 @@ function App() {
   moment.locale('pt-br')
 
   return (
-    <div className="App">
+    <div data-testid='mainComponent' className="App">
       <StockStorage>
         <AppPresentation />
         <MainStock />

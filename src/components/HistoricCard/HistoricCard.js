@@ -1,12 +1,9 @@
 import React from 'react'
-import moment from 'moment';
-import { toast } from 'react-toastify';
 import { Card } from 'primereact/card';
 
 import { StockContext } from '../../StockContext';
 import useForm from '../../hooks/useForm';
-import { transformDate } from '../../helpers/TransformDate';
-import { getHistoric } from '../../Api';
+import { handleSubmit } from '../../helpers/HandleSubmit';
 
 import { Input } from '../Input/Input';
 import { ButtonApp } from '../ButtonApp/ButtonApp';
@@ -24,30 +21,15 @@ export const HistoricCard = () => {
 		else setButtonDisabled(false)
 	}, [initialDate.value, finalDate.value, currentStock])
 
-	const handleSubmit = async (event) => {
-    event.preventDefault();
-		const apiInitialDate = transformDate(initialDate.value)
-		const apiFinalDate = transformDate(finalDate.value)
-
-		const response = await getHistoric(currentStock, apiInitialDate, apiFinalDate)
-		if(response.status === 200) {
-			const historic = response.data.prices
-
-			const opening = historic.map(price => price.opening).reverse()
-			const low = historic.map(price => price.low).reverse()
-			const high = historic.map(price => price.high).reverse()
-			const closing = historic.map(price => price.closing).reverse()
-			const dates = historic.map(price => moment(price.pricedAt).format('DD/MM/YYYY')).reverse()
-
-			setHistoric({dates, opening, low, high, closing})
-		} else {
-		  toast.error('Valor de tempo inválido!');
-		}
-  }
+	const onSubmit = async (e) => {
+		const response = await handleSubmit(e, 
+			{currentStock, initialDate: initialDate.value, finalDate: finalDate.value}, 'historic')
+		if(response && Object?.keys(response)?.length > 0) setHistoric(response)
+	}
 
   return (
-		<Card title="Projeção">
-		<form onSubmit={handleSubmit}>
+		<Card data-testid="historic" title="Histórico">
+		<form onSubmit={(e) => onSubmit(e)}>
 			<Input
 				label={'Data da inicial'}
 				type={'date'}
@@ -61,7 +43,7 @@ export const HistoricCard = () => {
 				{...finalDate}
 			/>
 			<ButtonApp 
-				label={'Comparar'}
+				label={'Consultar'}
 				canDisable={true}
 				disabled={buttonDisabled}
 			/>

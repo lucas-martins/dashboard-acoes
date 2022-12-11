@@ -16,14 +16,14 @@ export const CurrentPriceCard = () => {
 	}, [currentPrice])
 
   return (
-    <Card title="Último Preço" className={styles.card}>
+    <Card data-testid="currentPrice" title="Último Preço" className={styles.card}>
 			{
 				!Object.keys(currentPrice).length ? 
-					<p className="m-0">
+					<p data-testid="currentPriceNotSetted" className="m-0">
 						Informe o nome da ação que deseja verificar o último preço
 					</p>
 				:
-				<div>
+				<div data-testid="currentPriceSetted">
 					<p>Nome: {currentPrice.name}</p>
 					<p>Último Preço: R${currentPrice.lastPrice}</p>
 					<p>Data: {transformedData}</p>

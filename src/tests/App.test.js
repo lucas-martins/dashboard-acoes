@@ -1,19 +1,22 @@
 import { render, screen } from '@testing-library/react';
 import App from '../App.js';
 
-// test('renders learn react link', () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-// });
-
-// import { render, screen } from '@testing-library/react';
-// import App from './App';
-
-test('renders the landing page', () => {
+test('checar se todos os componentes foram renderizados corretamente', () => {
   render(<App />);
 
-  expect(true).toBeTruthy();
+  const mainComponent = screen.getByTestId('mainComponent');
+
+  const presentation = screen.getByTestId('presentation');
+  const currentPrice = screen.getByTestId('currentPrice');
+  const projection = screen.getByTestId('projection');
+  const historic = screen.getByTestId('historic');
+  const comparation = screen.getByTestId('comparation');
+
+  expect(mainComponent).toContainElement(presentation);
+  expect(mainComponent).toContainElement(currentPrice);
+  expect(mainComponent).toContainElement(projection);
+  expect(mainComponent).toContainElement(historic);
+  expect(mainComponent).toContainElement(comparation);
 });
 
 

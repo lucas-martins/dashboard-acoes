@@ -1,12 +1,10 @@
 import React from 'react'
 import moment from 'moment';
-import { toast } from 'react-toastify';
 import { Card } from 'primereact/card';
 
 import { StockContext } from '../../StockContext';
 import useForm from '../../hooks/useForm';
-import { getProjection } from '../../Api';
-import { transformDate } from '../../helpers/TransformDate';
+import { handleSubmit } from '../../helpers/HandleSubmit';
 
 import { Input } from '../Input/Input';
 import { ButtonApp } from '../ButtonApp/ButtonApp';
@@ -29,20 +27,15 @@ export const ProjectionCard = () => {
 			setTransformedDate(moment(projection.purchasedAt).format('DD/MM/YYYY'))
 	}, [projection])
 
-	const handleSubmit = async (event) => {
-    event.preventDefault();
-		const apiDate = transformDate(date.value)
-		const response = await getProjection(currentStock, apiDate, amount.value)
-		if(response.status === 200) {
-			setProjection(response.data)
-		} else {
-		  toast.error('Valor de tempo inválido!');
-		}
-  }
+	const onSubmit = async (e) => {
+		const response = await handleSubmit(e, 
+			{currentStock, date: date.value, amount: amount.value}, 'projection')
+		if(response && Object?.keys(response)?.length > 0) setProjection(response)
+	}
 
   return (
-    <Card title="Projeção">
-			<form onSubmit={handleSubmit}>
+    <Card data-testid="projection" title="Projeção">
+		<form onSubmit={(e) => onSubmit(e)}>
 				<Input
           label={'Data da compra'}
           type={'date'}
@@ -55,7 +48,7 @@ export const ProjectionCard = () => {
           name={'purchasedAmount'}
           {...amount}
         />
-				<ButtonApp 
+			<ButtonApp 
 					label={'Projetar'}
 					canDisable={true}
 					disabled={buttonDisabled}
