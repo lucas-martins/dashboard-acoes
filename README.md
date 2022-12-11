@@ -43,5 +43,4 @@ Execute o comando abaixo na raiz do projeto Front-end para rodar os testes unit�
 
 >npm test
 
-Ao executar o comando irá abrir uma lista com os arquivos de testes de cada componente juntamente com a verificação de cada teste.
-Mais abaixo, será exibida uma tabela com os percentuais de cobertura de cada componente assim como a cobertura total dos arquivos do projeto.
+Ao executar o comando irá abrir uma lista com os arquivos de testes de cada componente. Mais abaixo, será exibida uma tabela com os percentuais de cobertura de cada componente assim como a cobertura total dos arquivos do projeto.
