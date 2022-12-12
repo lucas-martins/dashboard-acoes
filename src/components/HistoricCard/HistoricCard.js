@@ -28,29 +28,34 @@ export const HistoricCard = () => {
 	}
 
   return (
-		<Card data-testid="historic" title="Histórico">
-		<form onSubmit={(e) => onSubmit(e)}>
-			<Input
-				label={'Data da inicial'}
-				type={'date'}
-				name={'initialDate'}
-				{...initialDate}
-			/>
-			<Input
-				label={'Data Final'}
-				type={'date'}
-				name={'finalDate'}
-				{...finalDate}
-			/>
-			<ButtonApp 
-				label={'Consultar'}
-				canDisable={true}
-				disabled={buttonDisabled}
-			/>
-		</form>
-		{
-			Object.keys(historic).length > 0 && <HistoricGraph historic={historic}/>
-		}
-	</Card>
+    <Card data-testid="historic" title="Histórico">
+      <form className="grid_form" onSubmit={(e) => onSubmit(e)}>
+        <div>
+          <Input
+            label={'Data da inicial'}
+            type={'date'}
+            name={'initialDate'}
+            {...initialDate}
+          />
+          <Input
+            label={'Data Final'}
+            type={'date'}
+            name={'finalDate'}
+            {...finalDate}
+          />
+        </div>
+
+        <div className="button_align">
+          <ButtonApp
+            label={'Consultar'}
+            canDisable={true}
+            disabled={buttonDisabled}
+          />
+        </div>
+      </form>
+      {Object.keys(historic).length > 0 && (
+        <HistoricGraph historic={historic} />
+      )}
+    </Card>
   )
 }

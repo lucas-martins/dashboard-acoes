@@ -10,6 +10,8 @@ export const StockStorage = ({children}) => {
     const [historic, setHistoric] = React.useState({})
     const [comparation, setComparation] = React.useState({})
 
+    const [theme, setTheme] = React.useState('theme_light')
+
     return (
         <StockContext.Provider value={{
             currentStock,
@@ -21,7 +23,9 @@ export const StockStorage = ({children}) => {
             historic,
             setHistoric,
             comparation,
-            setComparation
+            setComparation,
+            theme,
+            setTheme
         }}> 
             {children} 
         </StockContext.Provider>

@@ -1,5 +1,105 @@
-.App {
-  overflow-x: hidden
-}
-@import 'primeflex/primeflex.css';
+@import "primeflex/primeflex.css";
 
+.App {
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.max_width_container {
+  padding: 0 1.5rem;
+  min-width: 620px;
+  max-width: 1366px;
+  margin: 1rem auto;
+}
+
+.dashboard_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.dashboard_col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.grid_form {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+}
+
+.grid_form > div {
+  display: flex;
+  justify-content: center;
+  max-width: max-content;
+  gap: 1rem;
+}
+
+.p-calendar .p-inputtext {
+  flex: 1 1 auto;
+  width: 140px !important;
+}
+
+.p-inputnumber-buttons-horizontal .p-inputnumber-input {
+  width: 100px;
+}
+
+.button_align {
+  margin-top: 0.8rem;
+}
+
+.p-chips .p-chips-multiple-container {
+  width: 400px;
+}
+
+.p-tag {
+  background-color: #6366f126 !important;
+  color: #6366f1 !important;
+  font-size: 1.2rem !important;
+  padding: 0.5rem 1rem !important;
+}
+
+@media (max-width: 1200px) {
+  .dashboard_container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .grid_form .field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .grid_form {
+    justify-content: flex-start;
+  }
+}
+
+/* themes */
+
+.theme_light {
+  background-color: #fafafa;
+}
+
+.theme_dark {
+  background-color: #1c1c1c;
+  color: white;
+}
+.theme_dark .p-card {
+  background-color: rgb(46, 46, 46);
+  color: white;
+}
+
+.theme_dark .p-card .p-inputtext {
+  margin: 0;
+  background-color: #262626;
+  border-color: #262626;
+  color: white;
+}
+
+.theme_dark .p-chips-input-token input {
+  color: white !important;
+}

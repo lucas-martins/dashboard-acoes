@@ -8,6 +8,7 @@ export const handleSubmit = async (e, values, endpoint) => {
     e.preventDefault();
     let response;
 
+    if(endpoint === 'theme') response = setTheme(values)
     if(endpoint === 'lastPrice') response = await lastPrice(values)
     if(endpoint === 'projection') response = await projection(values)
     if(endpoint === 'historic') response = await historic(values)
@@ -15,6 +16,12 @@ export const handleSubmit = async (e, values, endpoint) => {
 
     return response
 };
+
+const setTheme = (values) => {
+    const {theme} = values
+    const newTheme = theme === 'theme_light'? 'theme_dark' : 'theme_light'
+    return newTheme
+}
 
 const lastPrice = async (values) => {
     const {stock} = values

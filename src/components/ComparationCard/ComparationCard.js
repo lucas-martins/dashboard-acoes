@@ -27,21 +27,24 @@ export const ComparationCard = () => {
 
   return (
 		<Card data-testid="comparation" title="Comparação">
-      <p>Para selecionar as ações que deseja comparar digite o nome da ação e clique "Enter"</p>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <Input
-          type={'chips'}
-          {...stocksToCompare}
-        />
-        <ButtonApp 
+      <p>
+        Para selecionar as ações que deseja comparar digite o nome da ação e
+        clique "Enter"
+      </p>
+      <form className="grid_form" onSubmit={(e) => onSubmit(e)}>
+        <div className='input_flex_chips'>
+          <Input type={'chips'} {...stocksToCompare} />
+        </div>
+
+        <ButtonApp
           label={'Comparar'}
           canDisable={true}
           disabled={buttonDisabled}
         />
       </form>
-      {
-        Object.keys(comparation).length > 0 && <ComparationGraph comparation={comparation}/>
-      }
-	</Card>
+      {Object.keys(comparation).length > 0 && (
+        <ComparationGraph comparation={comparation} />
+      )}
+    </Card>
   )
 }

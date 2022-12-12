@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment';
 import { Card } from 'primereact/card';
+import { Tag } from 'primereact/tag';
 
 import { StockContext } from '../../StockContext';
 import useForm from '../../hooks/useForm';
@@ -8,6 +9,8 @@ import { handleSubmit } from '../../helpers/HandleSubmit';
 
 import { Input } from '../Input/Input';
 import { ButtonApp } from '../ButtonApp/ButtonApp';
+
+import styles from './ProjectionCard.module.css'
 
 export const ProjectionCard = () => {
 
@@ -35,36 +38,64 @@ export const ProjectionCard = () => {
 
   return (
     <Card data-testid="projection" title="Projeção">
-		<form onSubmit={(e) => onSubmit(e)}>
-				<Input
-          label={'Data da compra'}
-          type={'date'}
-          name={'purchasedDate'}
-          {...date}
-        />
-				<Input
-          label={'Quantidade'}
-          type={'number'}
-          name={'purchasedAmount'}
-          {...amount}
-        />
-			<ButtonApp 
-					label={'Projetar'}
-					canDisable={true}
-					disabled={buttonDisabled}
-				/>
-			</form>
-			{
-				Object.keys(projection).length > 0 && 
-				<div>
-					<p>Nome: {projection.name}</p>
-					<p>Último Preço: R${projection.lastPrice}</p>
-					<p>Preço Atual: R${projection.priceAtDate}</p>
-					<p>Quantidade: {projection.purchasedAmount}</p>
-					<p>Data da compra: {transformedData}</p>
-					<p>Projeção de ganhos: {projection.capitalGains}</p>
-				</div>
-			}
+      <form className="grid_form" onSubmit={(e) => onSubmit(e)}>
+        <div>
+          <Input
+            label={'Data da compra'}
+            type={'date'}
+            name={'purchasedDate'}
+            {...date}
+          />
+
+          <Input
+            label={'Quantidade'}
+            type={'number'}
+            name={'purchasedAmount'}
+            {...amount}
+          />
+        </div>
+
+        <div className="button_align">
+          <ButtonApp
+            label={'Projetar'}
+            canDisable={true}
+            disabled={buttonDisabled}
+          />
+        </div>
+      </form>
+      {Object.keys(projection).length > 0 && (
+        <div className={styles.projection_container}>
+          <div className={styles.info_projection}>
+            <p>
+              <small>Nome</small>
+              <Tag>{projection.name}</Tag>{' '}
+            </p>
+            <p>
+              <small> Último Preço</small>
+              <Tag> R${projection.lastPrice}</Tag>
+            </p>
+            <p>
+              <small>Preço Atual</small>
+              <Tag>R${projection.priceAtDate}</Tag>{' '}
+            </p>
+          </div>
+
+          <div className={styles.info_projection}>
+            <p>
+              <small>Quantidade </small>
+              <Tag>{projection.purchasedAmount}</Tag>{' '}
+            </p>
+            <p>
+              <small>Data da compra</small>
+              <Tag>{transformedData}</Tag>{' '}
+            </p>
+            <p>
+              <small> Projeção de ganhos</small>
+              <Tag>{projection.capitalGains}</Tag>{' '}
+            </p>
+          </div>
+        </div>
+      )}
     </Card>
   )
 }

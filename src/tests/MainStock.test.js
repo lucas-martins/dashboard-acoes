@@ -14,12 +14,12 @@ test('checar se o formulário está presente', () => {
 });
 
 test('checar se o submit do formulário (último preço) foi chamado ao clicarmos no botão de envio do mesmo', async () => {
-    const mockLogin = jest.spyOn(SubmitModule,'handleSubmit').mockImplementation()
+    const mockSubmit = jest.spyOn(SubmitModule,'handleSubmit').mockImplementation()
     const onSubmit = jest.fn((e) => e.preventDefault())
 
     render(<StockStorage><MainStock onSubmit={onSubmit} /></StockStorage>);
 
     fireEvent.submit(screen.getByText("Pesquisar"))
 
-    expect(mockLogin).toHaveBeenCalled();
+    expect(mockSubmit).toHaveBeenCalled();
 });

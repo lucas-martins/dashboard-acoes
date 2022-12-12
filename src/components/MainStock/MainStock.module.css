@@ -1,3 +1,14 @@
-.container {
+.card_main_stock {
+    margin: 0 auto;
+  }
+  
+.form_main_stock {
     display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+}
+
+.input_flex {
+    flex: 0 0 auto;
+    width: calc(100% - 113.18px - 20px);
 }

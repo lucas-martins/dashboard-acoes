@@ -1,3 +1,21 @@
-.card {
-    margin: 1rem 0;
+.info_content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  
+.info {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white !important;
+    border-radius: 5px;
 }
+
+h1 {
+    margin: 0;
+    color: white !important;
+}
+  

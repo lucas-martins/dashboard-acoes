@@ -1,0 +1,9 @@
+.title_app {
+    color: #6366f1 !important;
+}
+
+.choose_theme {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}

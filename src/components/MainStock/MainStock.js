@@ -1,4 +1,5 @@
 import React from 'react'
+import { Card } from 'primereact/card'
 
 import { Input } from '../Input/Input'
 import { ButtonApp } from '../ButtonApp/ButtonApp'
@@ -22,17 +23,24 @@ export const MainStock = () => {
 	}
 
   return (
-    <div data-testid="mainStock" className={styles.container}>
-      <form data-testid="form" onSubmit={(e) => onSubmit(e)}>
-        <Input
-          label={'Nome da ação'}
-          type={'text'}
-          name={'stock'}
-          errorMessage={'Esta ação não foi encontrada.'}
-          {...stock}
-        />
-        <ButtonApp label={'Pesquisar'} tooltip={'Informe uma ação para pesquisar'} />
-      </form>
+    <div data-testid="mainStock" className={` ${styles.container}`}>
+      <Card className={styles.card_main_stock}>
+        <form data-testid="form" className={styles.form_main_stock} onSubmit={(e) => onSubmit(e)}>
+          <div className={styles.input_flex}>
+            <Input
+              label={'Nome da ação'}
+              type={'text'}
+              name={'stock'}
+              errorMessage={'Esta ação não foi encontrada.'}
+              {...stock}
+            />
+          </div>
+          <ButtonApp
+            label={'Pesquisar'}
+            tooltip={'Informe uma ação para pesquisar'}
+          />
+        </form>
+      </Card>
     </div>
   )
 }
