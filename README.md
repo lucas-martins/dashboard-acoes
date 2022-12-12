@@ -1,7 +1,7 @@
 # 📖 Dashboard de Ações - Documentação
 Aplicação para exibir um dashboard com informações sobre uma ação de uma corretora de ações.
 
-# 🔖 About
+# 🔖 Sobre
 
 Esta aplicação foi desenvolvida em React.
 
@@ -48,3 +48,7 @@ Execute o comando abaixo na raiz do projeto Front-end para rodar os testes unit�
 >npm test
 
 Ao executar o comando irá abrir uma lista com os arquivos de testes de cada componente. Mais abaixo, será exibida uma tabela com os percentuais de cobertura de cada componente assim como a cobertura total dos arquivos do projeto.
+
+### Aplicação
+
+![Print](public/print_theme_light.jpg?raw=true)
