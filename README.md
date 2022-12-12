@@ -1,6 +1,10 @@
 # 📖 Dashboard de Ações - Documentação
 Aplicação para exibir um dashboard com informações sobre uma ação de uma corretora de ações.
 
+# 🔖 About
+
+Esta aplicação foi desenvolvida em React.
+
 # 💻 Setup para o ambiente de desenvolvimento
 
 Siga os passos para execução do projeto e dos testes em sua máquina.
