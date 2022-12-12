@@ -1,9 +1,11 @@
 import React from 'react'
 import { Card } from 'primereact/card';
+import { ProgressSpinner } from 'primereact/progressspinner'
 
 import { StockContext } from '../../StockContext';
 import useForm from '../../hooks/useForm';
 import { handleSubmit } from '../../helpers/HandleSubmit';
+import { emptyDataset } from '../../helpers/EmptyChart';
 
 import { Input } from '../Input/Input';
 import { ButtonApp } from '../ButtonApp/ButtonApp';
@@ -15,6 +17,7 @@ export const HistoricCard = () => {
 
 	const {currentStock, historic, setHistoric} = React.useContext(StockContext)
 	const [buttonDisabled, setButtonDisabled] = React.useState(true)
+	const [loading, setLoading] = React.useState(false)
 
 	React.useEffect(() => {
 		if(!initialDate.value || !finalDate.value || currentStock.length === 0) setButtonDisabled(true)
@@ -22,9 +25,11 @@ export const HistoricCard = () => {
 	}, [initialDate.value, finalDate.value, currentStock])
 
 	const onSubmit = async (e) => {
+    setLoading(true)
 		const response = await handleSubmit(e, 
 			{currentStock, initialDate: initialDate.value, finalDate: finalDate.value}, 'historic')
 		if(response && Object?.keys(response)?.length > 0) setHistoric(response)
+    setLoading(false)
 	}
 
   return (
@@ -50,10 +55,20 @@ export const HistoricCard = () => {
             label={'Consultar'}
             canDisable={true}
             disabled={buttonDisabled}
+            tooltip={'Consultar'}
           />
         </div>
       </form>
-      {Object.keys(historic).length > 0 && (
+      {
+        loading && 
+        <div className="flex justify-content-center align-items-center mt-3 spinner_height">
+          <ProgressSpinner />
+        </div>
+      }
+      {!loading && Object.keys(historic).length === 0 && process.env.NODE_ENV !== 'test' && (
+        <HistoricGraph historic={emptyDataset} />
+      )}
+      {!loading && Object.keys(historic).length > 0 && (
         <HistoricGraph historic={historic} />
       )}
     </Card>

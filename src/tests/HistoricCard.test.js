@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { StockStorage } from '../StockContext';
 import { HistoricCard } from '../components/HistoricCard/HistoricCard';
 import * as SubmitModule from '../helpers/HandleSubmit';
@@ -13,5 +13,7 @@ test('checar se o submit do formulário (histórico) foi chamado ao clicarmos no
 
     fireEvent.submit(screen.getByText("Consultar"))
 
-    expect(mockSubmit).toHaveBeenCalled();
+    await waitFor(() => {
+        expect(mockSubmit).toHaveBeenCalled();
+    })
 });

@@ -6,6 +6,18 @@
     padding: 1.5rem 0 0;
 }
 
+.projection_hint {
+    display: flex;
+    justify-content: center;
+    padding-top: 35px;
+}
+
+.projection_hint_price_generated {
+    display: flex;
+    justify-content: center;
+    padding-top: 75px;
+}
+
 .info_projection {
     display: flex;
     gap: 1rem;
@@ -17,4 +29,8 @@
     flex-direction: column-reverse;
     align-items: center;
     gap: 0.5rem;
+}
+
+.spinner {
+    height: 180px;
 }

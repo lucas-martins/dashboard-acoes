@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { StockStorage } from '../StockContext';
 import { ComparationCard } from '../components/ComparationCard/ComparationCard';
 import * as SubmitModule from '../helpers/HandleSubmit';
@@ -13,5 +13,7 @@ test('checar se o submit do formulário (comparação) foi chamado ao clicarmos 
 
     fireEvent.submit(screen.getByText("Comparar"))
 
-    expect(mockSubmit).toHaveBeenCalled();
+    await waitFor(() => {
+        expect(mockSubmit).toHaveBeenCalled();
+    })
 });

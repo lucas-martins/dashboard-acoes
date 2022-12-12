@@ -12,9 +12,10 @@ import { ProjectionCard } from '../ProjectionCard.js/ProjectionCard'
 export const Container = () => {
 
   const {theme} = React.useContext(StockContext)
+  const localTheme = localStorage.getItem("theme")
   
   return (
-    <div className={`App ${theme}`}>
+    <div className={`App ${localTheme ? localTheme : theme}`}>
         <AppPresentation />
         <div>
         <div className="max_width_container">

@@ -9,6 +9,7 @@ export const ButtonApp = ({label, type, tooltip, canDisable, disabled, hasIcon, 
       label={label}
       aria-label={label}
       type={type}
+      tooltipOptions={{position: 'top'}}
       tooltip={tooltip}
       icon={PrimeIcons[icon]}
       disabled={!canDisable ? false : disabled ? true : false }

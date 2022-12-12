@@ -10,16 +10,23 @@ import styles from './AppPresentation.module.css'
 export const AppPresentation = () => {
 
   const {theme, setTheme} = React.useContext(StockContext)
+  const localTheme = localStorage.getItem("theme")
 
   const onSubmit = async (e) => {
     const response = await handleSubmit(e, {theme}, 'theme')
-    if(response) setTheme(response)
+    if(response) {
+      setTheme(response)
+      localStorage.setItem("theme", response);
+    }
   }
 
   return (
     <div data-testid="presentation" className='text-center max_width_container'>
       <form className={styles.choose_theme} onSubmit={(e) => onSubmit(e)}>
-        <ButtonApp hasIcon="true" icon={theme === 'theme_light' ? 'MOON' : 'SUN'} />
+        <ButtonApp 
+          hasIcon="true"
+          icon={localTheme ? localTheme === 'theme_light' ? 'MOON' : 'SUN' : theme === 'theme_light' ? 'MOON' : 'SUN'}
+        />
       </form>
       <h1 className={styles.title_app}>Bem-vindo ao Dashboard de Ações!</h1>
       <div data-testid="description">

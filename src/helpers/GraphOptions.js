@@ -11,10 +11,10 @@ export const options = {
 	scales: {
 		x: {
 			ticks: {
-				color: '#495057'
+				color: '#495057',
 			},
 			grid: {
-				color: '#ebedef'
+				color: '#ebedef',
 			}
 		},
 		y: {
@@ -22,7 +22,7 @@ export const options = {
 				color: '#495057'
 			},
 			grid: {
-				color: '#ebedef'
+				color: '#ebedef',
 			}
 		}
 	}

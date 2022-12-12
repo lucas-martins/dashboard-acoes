@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage",
+    "test": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -50,7 +50,11 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/index.js",
-      "!src/**/HandleSubmit.js"
+      "!src/Api.js",
+      "!src/helpers/*.js",
+      "!src/hooks/*.js",
+      "!src/components/ComparationCard/ComparationGraph.js",
+      "!src/components/HistoricCard/HistoricGraph.js"
     ],
     "moduleNameMapper": {
       "axios": "axios/dist/node/axios.cjs"

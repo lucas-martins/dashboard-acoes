@@ -12,14 +12,16 @@ import styles from './MainStock.module.css'
 
 export const MainStock = () => {
   const stock = useForm()
-  const {setCurrentPrice, setCurrentStock} = React.useContext(StockContext)
+  const {setCurrentPrice, setCurrentPriceLoading, setCurrentStock} = React.useContext(StockContext)
 
   React.useEffect(() => setCurrentStock(stock.value), [stock.value, setCurrentStock])
 
 	const onSubmit = async (e) => {
+    setCurrentPriceLoading(true)
 		const response = await handleSubmit(e, 
 			{stock: stock.value}, 'lastPrice')
-		if(response && Object?.keys(response)?.length > 0) setCurrentPrice(response)
+		if(response && Object?.keys(response)?.length > 0){ setCurrentPrice(response)}
+    setCurrentPriceLoading(false)
 	}
 
   return (

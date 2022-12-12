@@ -1,4 +1,4 @@
-import { render, screen, fireEvent} from '@testing-library/react';
+import { render, screen, fireEvent, waitFor} from '@testing-library/react';
 import { StockStorage } from '../StockContext';
 import { MainStock } from '../components/MainStock/MainStock';
 import * as SubmitModule from '../helpers/HandleSubmit';
@@ -21,5 +21,7 @@ test('checar se o submit do formulário (último preço) foi chamado ao clicarmo
 
     fireEvent.submit(screen.getByText("Pesquisar"))
 
-    expect(mockSubmit).toHaveBeenCalled();
+    await waitFor(() => {
+        expect(mockSubmit).toHaveBeenCalled();
+    })
 });

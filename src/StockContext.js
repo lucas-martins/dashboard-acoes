@@ -6,6 +6,7 @@ export const StockStorage = ({children}) => {
     const [currentStock, setCurrentStock] = React.useState('')
 
     const [currentPrice, setCurrentPrice] = React.useState({})
+    const [currentPriceLoading, setCurrentPriceLoading] = React.useState(false)
     const [projection, setProjection] = React.useState({})
     const [historic, setHistoric] = React.useState({})
     const [comparation, setComparation] = React.useState({})
@@ -18,6 +19,8 @@ export const StockStorage = ({children}) => {
             setCurrentStock,
             currentPrice,
             setCurrentPrice,
+            currentPriceLoading,
+            setCurrentPriceLoading,
             projection,
             setProjection,
             historic,
