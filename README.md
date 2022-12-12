@@ -3,7 +3,7 @@ Aplicação para exibir um dashboard com informações sobre uma ação de uma c
 
 # 🔖 Sobre
 
-Esta aplicação foi desenvolvida em React.
+Esta aplicação foi desenvolvida em React. O back-end utilizado nesta aplicação está disponível também aqui no Github. [Back-end](https://github.com/Alive-App/hiring-frontend/tree/main/server)
 
 # 💻 Setup para o ambiente de desenvolvimento
 
